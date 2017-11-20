@@ -1,7 +1,9 @@
 import os
 import sys
-from distutils.core import Extension, setup
-from Cython.Distutils import build_ext
+
+from distutils.core import setup
+from distutils.extension import Extension
+from Cython.Build import build_ext
 
 platform_supported = False
 for prefix in ['darwin', 'linux', 'bsd']:
@@ -30,20 +32,22 @@ if sys.platform == "win32":
 if not platform_supported:
     raise NotImplementedError(sys.platform)
 
-setup(
-    name="octomap",
-    version="0.5",
-    license = "BSD",
-    packages=["octomap"],
-    ext_modules=[Extension(
-        "octomap",
-        ["octomap/octomap.pyx"],
-        include_dirs = include_dirs,
-        library_dirs = lib_dirs,
-        libraries=[
+ext_modules = [
+        Extension("octomap", ["octomap/octomap.pyx"],
+            include_dirs = include_dirs,
+            library_dirs = lib_dirs,
+            libraries = [
                 "octomap",
                 "octomath"
                 ],
-        language="c++")],
-    cmdclass={'build_ext': build_ext},
+            language = "c++")
+            ]
+
+setup(
+        name="octomap",
+        version="0.5",
+        license = "BSD",
+        packages = ["octomap"],
+        ext_modules = ext_modules,
+        cmdclass = {'build_ext': build_ext}
     )
