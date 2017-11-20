@@ -1,4 +1,5 @@
 octomap/octomap.cpp
+octomap.egg-info/
 test/test1.bt
 build/
 *.swp

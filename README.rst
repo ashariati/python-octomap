@@ -15,7 +15,7 @@ and --library-dirs command line options:
 
 Install
 -------
-You can install python-octomap using the normal distutils install command:
+You can install python-octomap using pip:
 
-    $ python setup.py install
+    $ sudo pip3 install .
 
