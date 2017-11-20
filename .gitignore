@@ -1,2 +1,4 @@
 octomap/octomap.cpp
 test/test1.bt
+build/
+*.swp
